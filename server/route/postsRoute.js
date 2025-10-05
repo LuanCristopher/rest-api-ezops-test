@@ -40,4 +40,20 @@ router.delete('/posts/:id', async function (req, res, next) {
 	}
 });
 
+//Criando rota mock so para testar o login
+
+router.post('/auth/login', async function (req, res, next) {
+  const { email, password } = req.body;
+
+  // Mock login só pra validar a integração com o frontend
+  if (email === 'user@user.com' && password === '12345') {
+    return res.json({
+      token: 'fake-jwt-token',
+      user: { email, name: 'Test User' }
+    });
+  }
+
+  return res.status(401).json({ message: 'Invalid credentials' });
+});
+
 module.exports = router;
