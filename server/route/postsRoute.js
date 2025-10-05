@@ -45,11 +45,14 @@ router.delete('/posts/:id', async function (req, res, next) {
 router.post('/auth/login', async function (req, res, next) {
   const { email, password } = req.body;
 
-  // Mock login só pra validar a integração com o frontend
+  // mock simples para teste
   if (email === 'user@user.com' && password === '12345') {
     return res.json({
-      token: 'fake-jwt-token',
-      user: { email, name: 'Test User' }
+      accessToken: 'fake-access-token',  // <── aqui o nome esperado pelo front
+      user: {
+        email,
+        name: 'Test User'
+      }
     });
   }
 
